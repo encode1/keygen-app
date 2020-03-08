@@ -28,7 +28,7 @@ node server.js
 ```
 
 
-Demo [link](https://keygen-api-production.herokuapp.com/api/keys/)
+Demo [link](https://keygen-app-production.herokuapp.com)
 
 
 ### Customize configuration
