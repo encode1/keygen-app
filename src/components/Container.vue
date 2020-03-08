@@ -36,6 +36,7 @@
 
 <script>
 import axios from 'axios';
+const API_URL = process.env.API_URL || 'http://localhost:8000/api/keys/';
 
 export default {
     name: 'Container',
@@ -53,7 +54,7 @@ export default {
     },
     methods:{
         getAll(){
-            axios.get(`http://localhost:8000/api/keys/`)
+            axios.get(API_URL)
                 .then((res)=>{
                     this.named_keys=res.data;
                     this.email=""
@@ -61,10 +62,14 @@ export default {
         },
         deleteOne(named_key){
             if (confirm(`Delete ${named_key.account.email} | ${named_key.hash_key}`)){
-                axios.delete(`http://localhost:8000/api/keys/${named_key.id}`)
+                axios.delete(`${API_URL}${named_key.id}`)
                 .then(()=>{
-                        this.getAll();
+                    this.getAll();
                     })
+                .catch((err) => {
+                    console.log(err);
+                    alert(`Error deleting key ${named_key.account.email} | ${named_key.hash_key}`)
+                })
             }
         },
         generateKey(){
@@ -73,10 +78,14 @@ export default {
             }
             else {
 
-                axios.post('http://localhost:8000/api/keys/', {'account': {'email': this.email}})
-                    .then(() => {
-                        this.getAll();
-                    })
+                axios.post(API_URL, {'account': {'email': this.email}})
+                .then(() => {
+                    this.getAll();
+                })
+                .catch((err) => {
+                    console.log(err);
+                    alert(`Error Generating key for ${this.email}`)
+                })
             }
         }
     }
