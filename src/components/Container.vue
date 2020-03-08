@@ -36,7 +36,7 @@
 
 <script>
 import axios from 'axios';
-const API_URL = process.env.API_URL || 'http://localhost:8000/api/keys/';
+const API_URL = 'https://keygen-api-production.herokuapp.com/api/keys/';
 
 export default {
     name: 'Container',
@@ -51,6 +51,7 @@ export default {
     },
     mounted(){
         this.getAll()
+        console.log(process.env.ROOT_API)
     },
     methods:{
         getAll(){
