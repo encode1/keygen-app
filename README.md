@@ -22,5 +22,14 @@ npm run build
 npm run lint
 ```
 
+### Start Server
+```
+node server.js
+```
+
+
+Demo [link](https://keygen-api-production.herokuapp.com/api/keys/)
+
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
